@@ -8,7 +8,7 @@
 
 
 void interpret(std::string input) {
-	std::vector<int> memory { 0 };
+	std::vector<int> memory{ 0 };
 	std::vector<int>::iterator mem_pos = memory.begin();
 	std::stack<std::string::iterator> brac_open_pos;
 	std::string::iterator prog_pos;
@@ -20,8 +20,8 @@ void interpret(std::string input) {
 				if (*(++prog_pos) == 'w') {
 					(*mem_pos)--;
 				}
-				else if (*(prog_pos) == 'W') {
-					if ((mem_pos != memory.end())&&(next(mem_pos) == memory.end())) {
+				else if (*prog_pos == 'W') {
+					if ((mem_pos != memory.end()) && (next(mem_pos) == memory.end())) {
 						memory.push_back(0);
 						mem_pos = memory.end() - 1;
 					}
@@ -29,7 +29,7 @@ void interpret(std::string input) {
 						mem_pos++;
 					}
 				}
-				else if (*(prog_pos) == 'o') {
+				else if (*prog_pos == 'o') {
 					if (*(++prog_pos) == 'w') {
 						reg = *mem_pos;
 					}
@@ -41,12 +41,20 @@ void interpret(std::string input) {
 					prog_pos--;
 				}
 			}
-			else if (*(prog_pos) == 'O') {
+			else if (*prog_pos == 'O') {
 				if (*(++prog_pos) == 'w') {
 					std::cin >> *mem_pos;
 				}
 				else if (*(prog_pos) == 'W') {
 					brac_open_pos.push(prog_pos + 1);
+				}
+				else {
+					prog_pos--;
+				}
+			}
+			else if (*prog_pos == '0'){
+				if (*(++prog_pos) == 'w') {
+					*mem_pos = 0;
 				}
 				else {
 					prog_pos--;
@@ -76,6 +84,14 @@ void interpret(std::string input) {
 				}
 				else if (*(prog_pos) == 'W') {
 					(*mem_pos)++;
+				}
+				else if (*(prog_pos) == 'O') {
+					if (*(++prog_pos) == 'W') {
+						*mem_pos += reg;
+					}
+					else {
+						prog_pos--;
+					}
 				}
 				else {
 					prog_pos--;
