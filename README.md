@@ -1,5 +1,9 @@
 # WOWlang
 
+"Wow" - Owen Wilson
+
+WOWlang is an esoteric programming language inspired by Owen Wilson's famous quote, "wow".
+
 * wow - decrement value
 * woW - move pointer to the right
 * wOw - input from std
