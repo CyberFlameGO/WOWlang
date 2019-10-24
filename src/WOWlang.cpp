@@ -42,7 +42,7 @@ void interpret(std::string input) {
 					std::cin >> *mem_pos;
 				}
 				else if (*prog_pos == 'W') {
-					if (*mem_pos != 0){
+					if (*mem_pos != 0) {
 						prog_pos = brac_open_pos.top();
 					}
 				}
@@ -50,7 +50,7 @@ void interpret(std::string input) {
 					prog_pos--;
 				}
 			}
-			else if (*prog_pos == '0'){
+			else if (*prog_pos == '0') {
 				if (*(++prog_pos) == 'w') {
 					*mem_pos = 0;
 				}
@@ -76,7 +76,7 @@ void interpret(std::string input) {
 			}
 			else if (*prog_pos == 'O') {
 				if (*(++prog_pos) == 'w') {
-					brac_open_pos.push(prog_pos+1);
+					brac_open_pos.push(prog_pos + 1);
 					if (*mem_pos == 0) {
 						prog_pos = input.begin() + input.find("wOW", ++prog_pos - input.begin());
 						brac_open_pos.pop();
