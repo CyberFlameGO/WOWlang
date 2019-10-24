@@ -42,7 +42,9 @@ void interpret(std::string input) {
 					std::cin >> *mem_pos;
 				}
 				else if (*prog_pos == 'W') {
-					prog_pos = brac_open_pos.top();
+					if (*mem_pos != 0){
+						prog_pos = brac_open_pos.top();
+					}
 				}
 				else {
 					prog_pos--;
@@ -74,8 +76,7 @@ void interpret(std::string input) {
 			}
 			else if (*prog_pos == 'O') {
 				if (*(++prog_pos) == 'w') {
-					//bug when bracket is at the start
-					brac_open_pos.push(prog_pos - 3);
+					brac_open_pos.push(prog_pos+1);
 					if (*mem_pos == 0) {
 						prog_pos = input.begin() + input.find("wOW", ++prog_pos - input.begin());
 						brac_open_pos.pop();
